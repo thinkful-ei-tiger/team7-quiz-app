@@ -20,6 +20,7 @@ form {
     font-weight: bold;
     padding: 25px;
     margin: 25px 10px;
+    /* font-size: 4vw; */
   }
 form div{
   display:flex;

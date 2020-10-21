@@ -6,9 +6,29 @@ const store = {
   // 5 or more questions are required
   questions: [
     {
-      question: 'What color is broccoli?',
+      question: 'Which pop star burnt down her home gym with candles?',
       answers: [
-        'red',
+        'Katy Perry',
+        'Britney Spears',
+        'Madonna',
+        'Lady Gaga'
+      ],
+      correctAnswer: 'Britney Spears'
+    },
+    {
+      question: 'In the series Arrested Development, there’s always money where?',
+      answers: [
+        'in the sofa',
+        'in the car dealership',
+        'in the bottom shoe drawer',
+        'in the banana stand'
+      ],
+      correctAnswer: 'in the banana stand'
+    },
+    {
+      question: 'What is Star Wars day?',
+      answers: [
+        'May 4th',
         'orange',
         'pink',
         'green'
@@ -16,14 +36,64 @@ const store = {
       correctAnswer: 'green'
     },
     {
-      question: 'What is the current year?',
+      question: 'What is the answer to life, the universe and everything?',
       answers: [
-        '1970',
+        '42',
         '2015',
         '2019',
         '2005'
       ],
       correctAnswer: '2019'
+    },
+    {
+      question: 'What is the name of Han Solo’s ship?',
+      answers: [
+        'Millenium Flacon',
+        'orange',
+        'pink',
+        'green'
+      ],
+      correctAnswer: 'green'
+    },
+    {
+      question: 'What is the answer to life, the universe and everything?',
+      answers: [
+        '42',
+        '2015',
+        '2019',
+        '2005'
+      ],
+      correctAnswer: '2019'
+    },
+    {
+      question: 'Never gonna give you up',
+      answers: [
+        'Never gonna let you down',
+        '2015',
+        '2019',
+        '2005'
+      ],
+      correctAnswer: '2019'
+    },
+    {
+      question: 'Who is the main character in "The Office"',
+      answers: [
+        'Stanley Hudson',
+        'Michael Scott',
+        'Walter White',
+        'Morty Smith'
+      ],
+      correctAnswer: 'Michael Scott'
+    },
+    {
+      question: 'SpongeBob created _____ in the episode “Frankendoodle”',
+      answers: [
+        'Sheldon J. Plankton',
+        'SpongeGar',
+        'DoodleBob',
+        'Gary the Snail'
+      ],
+      correctAnswer: 'DoodleBob'
     }
   ],
   quizStarted: false,
