@@ -36,17 +36,23 @@ function questionHelper(question){
   //let html='';
   let title =`${question.question}`;
   
-  let answers =`<form>
-  <p>Pick an answer:</p>
-  <input type="radio" id=${question.answers[0]} name="color" value=${question.answers[0]}>
-  <label for="other">${question.answers[0]}</label>
-  <input type="radio" id=${question.answers[1]} name="color" value=${question.answers[1]}>
-  <label for="female">${question.answers[1]}</label><br>
-  <input type="radio" id=${question.answers[2]} name="color" value=${question.answers[2]}>
-  <label for="other">${question.answers[2]}</label>
-  <input type="radio" id=${question.answers[3]} name="color" value=${question.answers[3]}>
-  <label for="other">${question.answers[3]}</label>
-  <input type="submit" value="Submit"></form>`;
+  let answers =
+  `<form>
+     <label>Pick an answer:</label>
+     <div class = "group">
+       <div class = "questionItem">
+         <div class = "radioItem"><input type="radio" id=${question.answers[0]} name="color" value=${question.answers[0]}>
+         <label for="other">${question.answers[0]}</label></div>
+         <div class = "radioItem"><input type="radio" id=${question.answers[1]} name="color" value=${question.answers[1]}>
+         <label for="female">${question.answers[1]}</label></div>
+         <div class = "radioItem"><input type="radio" id=${question.answers[2]} name="color" value=${question.answers[2]}>
+         <label for="other">${question.answers[2]}</label></div>
+         <div class = "radioItem"><input type="radio" id=${question.answers[3]} name="color" value=${question.answers[3]}>
+         <label for="other">${question.answers[3]}</label></div>
+       </div>
+       <div class = tracker><input type="submit" value="Submit"></div>
+     </div>
+   </form>`;
   //$('h1').html(title + answers);
   store.questionNumber++;
   templatePage(title+answers);
@@ -128,11 +134,12 @@ function nextQuestion(){
 function lastQuestion(){
   return store.questionNumber>=store.questions.length;
 }
-
+//Ryan code block
 function finishedPage(){
   const finishedScreen= `<form id="finished-form">
-<label for="finished-label">YOU FINISHED!<div class = finished>${store.score}/${store.questions.length}<p>correct</p></div></label>
-<input type="submit">
+<label for="finished-label">YOU FINISHED!<div class = finished>
+${store.score}/${store.questions.length}<p>correct</p></div></label>
+<button type='submit'>Submit</button>
 </form>`;
   //let html=finishedScreen;
   //$( 'h1' ).html(html);
@@ -140,12 +147,19 @@ function finishedPage(){
   $( 'form' ).submit(function( event ) {
     event.preventDefault();
     //console.log(`${store.score} fininished`);
+    resetQuiz();
     render();
   });
 }
 //this code controls what the page displays
 //I could use a switch statement for this if I wanted
-
+function resetQuiz(){
+  store.quizStarted = false;
+  store.questionNumber= 0;
+  store.score=0;
+  store.correct=false;
+  store.answered =false;
+}
 function render(){
   if(store.quizStarted && store.answered){
     //store.correct = false;

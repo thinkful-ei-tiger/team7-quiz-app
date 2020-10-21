@@ -6,50 +6,41 @@
   * https://github.com/andreacardybailey/responsive_example/blob/master/styles/responsive-base.css 
   *
 */
-* {
-  box-sizing: border-box;
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    min-height: 200px;
+    background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(249,249,249,1) 72%, rgba(13,37,245,1) 100%);
+    border: solid;
+    border-width: 1px;
+    border-radius: 8px;
+    font-family: 'Varela', sans-serif;
+    font-weight: bold;
+    padding: 25px;
+    margin: 25px 10px;
+  }
+form div{
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 15px 25px;
+  justify-content: space-around;
 }
-
-body {
-  font-family: 'Roboto', sans-serif;
+.group{
+  display:flex;
+  flex-direction: column;
 }
-
-button, input[type="text"] {
-  padding: 5px;
+form .radioItem{
+  /*border:solid;*/
+  margin-right: 20px;
+  justify-content: space-around;
+  transform:scale(1.5);
 }
-
-button:hover {
-  cursor: pointer;
-}
-
-#shopping-list-item {
-  width: 250px;
-}
-
-.container {
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.shopping-list {
-  list-style: none;
-  padding-left: 0;
-}
-
-.shopping-list > li {
-  margin-bottom: 20px;
-  border: 1px solid grey;
-  padding: 20px;
-}
-
-.shopping-item {
-  display: block;
-  color: grey;
-  font-style: italic;
-  font-size: 20px;
-  margin-bottom: 15px;
-}
-
-.shopping-item__checked {
-  text-decoration: line-through;
-}
+button {
+  padding: 15px 25px;
+  border-radius: 5px;
+  }
+  
