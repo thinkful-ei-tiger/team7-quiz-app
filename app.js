@@ -33,7 +33,7 @@ const store = {
         'pink',
         'green'
       ],
-      correctAnswer: 'green'
+      correctAnswer: 'May 4th'
     },
     {
       question: 'What is the answer to life, the universe and everything?',
@@ -43,27 +43,17 @@ const store = {
         '2019',
         '2005'
       ],
-      correctAnswer: '2019'
+      correctAnswer: '42'
     },
     {
       question: 'What is the name of Han Solo’s ship?',
       answers: [
-        'Millenium Flacon',
+        'Millenium Falcon',
         'orange',
         'pink',
         'green'
       ],
-      correctAnswer: 'green'
-    },
-    {
-      question: 'What is the answer to life, the universe and everything?',
-      answers: [
-        '42',
-        '2015',
-        '2019',
-        '2005'
-      ],
-      correctAnswer: '2019'
+      correctAnswer: 'Millenium Falcon'
     },
     {
       question: 'Never gonna give you up',
@@ -73,7 +63,7 @@ const store = {
         '2019',
         '2005'
       ],
-      correctAnswer: '2019'
+      correctAnswer: 'Never gonna let you down'
     },
     {
       question: 'Who is the main character in "The Office"',
@@ -103,7 +93,6 @@ const store = {
   answered: false,
 };
 function questionHelper(question){
-  //let html='';
   let title =`<div class="title">${question.question}</div>`;
   
   let answers =
@@ -111,23 +100,21 @@ function questionHelper(question){
      <label>Pick an answer:</label>
      <div class = "group">
        <div class = "questionItem">
-         <div class = "radioItem"><input type="radio" id=${question.answers[0]} name="color" value=${question.answers[0]}>
+         <div class = "radioItem"><input type="radio" id=${question.answers[0]} name="color" value="${question.answers[0]}">
          <label for="other">${question.answers[0]}</label></div>
-         <div class = "radioItem"><input type="radio" id=${question.answers[1]} name="color" value=${question.answers[1]}>
+         <div class = "radioItem"><input type="radio" id=${question.answers[1]} name="color" value="${question.answers[1]}">
          <label for="female">${question.answers[1]}</label></div>
-         <div class = "radioItem"><input type="radio" id=${question.answers[2]} name="color" value=${question.answers[2]}>
+         <div class = "radioItem"><input type="radio" id=${question.answers[2]} name="color" value="${question.answers[2]}">
          <label for="other">${question.answers[2]}</label></div>
-         <div class = "radioItem"><input type="radio" id=${question.answers[3]} name="color" value=${question.answers[3]}>
+         <div class = "radioItem"><input type="radio" id=${question.answers[3]} name="color" value="${question.answers[3]}">
          <label for="other">${question.answers[3]}</label></div>
        </div>
        <div class = tracker><input type="submit" value="Submit"></div>
      </div>
    </form>`;
-  //$('h1').html(title + answers);
-  //store.questionNumber++;
+  store.questionNumber++;
   templatePage(title+answers);
   submitAnswer(question);
-  store.questionNumber++;
 }
 const startPage =`<form id="js-quiz-start-form">
       <label for="quiz-start-label">Are You Meme Enough???</label>
@@ -142,9 +129,9 @@ const correctScreen = `<form id="next-question-form">
 function submitAnswer(question){
   $('form').submit(function (event){
     event.preventDefault();
-    //console.log('thats right you clicked me');
     let answer =$('[name=\'color\']:checked').val();
-    if(answer === question.correctAnswer){
+    console.log(answer);
+    if(answer === (question.correctAnswer)){
       store.correct =true;
     }
     store.answered=true;
@@ -163,19 +150,16 @@ function quizStart(){
 function correctPage(){
   const wrongScreen=`<form id="next-question-form">
 <label>Wrong T_T</label>
-<label>${store.questions[store.questionNumber].correctAnswer}</label>
+<label>${store.questions[store.questionNumber-1].correctAnswer}</label>
 <input type="submit">
 </form>`;
+console.log(`I am at ${store.questionNumber}`);
   if(store.correct){
     templatePage(correctScreen);
-    console.log('correct!');
     store.score++;
-    //console.log(store.score);
   }else{
     templatePage(wrongScreen);
-    console.log('incorect');
   }
-  //$( 'h1' ).html(html);
   $( 'form' ).submit(function( event ) {
     event.preventDefault();
     nextQuestion();
@@ -198,15 +182,14 @@ function templatePage(html){
 function nextQuestion(){
   store.answered=false;
   store.correct=false;
-  //store.questionNumber++;
 }
 
 //code that handles displaying finished quiz
-
+//boolean function that checks if a quiz is finished
 function lastQuestion(){
   return store.questionNumber>=store.questions.length;
 }
-//Ryan code block
+//function that displays a finished quiz
 function finishedPage(){
   const finishedScreen= `<form id="finished-form">
 <label for="finished-label">YOU FINISHED!<div class = finished>
@@ -223,8 +206,7 @@ ${store.score}/${store.questions.length}<p>correct</p></div></label>
     render();
   });
 }
-//this code controls what the page displays
-//I could use a switch statement for this if I wanted
+//helper function to reset the quiz at the end
 function resetQuiz(){
   store.quizStarted = false;
   store.questionNumber= 0;
@@ -232,6 +214,8 @@ function resetQuiz(){
   store.correct=false;
   store.answered =false;
 }
+//this code controls what the page displays
+//I could use a switch statement for this if I wanted
 function render(){
   if(store.quizStarted && store.answered){
     //store.correct = false;
