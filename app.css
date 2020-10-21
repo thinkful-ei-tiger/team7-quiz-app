@@ -6,6 +6,16 @@
   * https://github.com/andreacardybailey/responsive_example/blob/master/styles/responsive-base.css 
   *
 */
+.title{
+  font-size:4vw;
+  padding: 15px 25px;
+  padding-left: 8px;
+}
+.tracker{
+  font-size:4vw;
+  padding: 15px 25px;
+  padding-left: 8px;
+}
 form {
     display: flex;
     flex-direction: column;
@@ -20,7 +30,7 @@ form {
     font-weight: bold;
     padding: 25px;
     margin: 25px 10px;
-    /* font-size: 4vw; */
+    font-size: 4vw; 
   }
 form div{
   display:flex;
@@ -34,14 +44,22 @@ form div{
   display:flex;
   flex-direction: column;
 }
-form .radioItem{
+form.radioItem{
   /*border:solid;*/
   margin-right: 20px;
   justify-content: space-around;
-  transform:scale(1.5);
+  transform:scale(1.1);
 }
 button {
   padding: 15px 25px;
   border-radius: 5px;
+  }
+  @media only screen and (min-width: 600px) {
+    body {
+      background-color: lightblue;
+    }
+    form.radioItem{
+      transform:scale(1);
+    }
   }
   

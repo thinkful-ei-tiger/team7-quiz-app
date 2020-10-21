@@ -16,14 +16,14 @@ const store = {
       correctAnswer: 'Britney Spears'
     },
     {
-      question: 'In the series Arrested Development, there’s always money where?',
+      question: 'In "Arrested Development", there’s always money where?',
       answers: [
-        'in the sofa',
-        'in the car dealership',
-        'in the bottom shoe drawer',
-        'in the banana stand'
+        'Sofa',
+        'Car dealership',
+        'Bottom shoe drawer',
+        'Banana stand'
       ],
-      correctAnswer: 'in the banana stand'
+      correctAnswer: 'Banana stand'
     },
     {
       question: 'What is Star Wars day?',
@@ -104,7 +104,7 @@ const store = {
 };
 function questionHelper(question){
   //let html='';
-  let title =`${question.question}`;
+  let title =`<div class="title">${question.question}</div>`;
   
   let answers =
   `<form>
@@ -124,9 +124,10 @@ function questionHelper(question){
      </div>
    </form>`;
   //$('h1').html(title + answers);
-  store.questionNumber++;
+  //store.questionNumber++;
   templatePage(title+answers);
   submitAnswer(question);
+  store.questionNumber++;
 }
 const startPage =`<form id="js-quiz-start-form">
       <label for="quiz-start-label">Are You Meme Enough???</label>
@@ -135,10 +136,6 @@ const startPage =`<form id="js-quiz-start-form">
 
 const correctScreen = `<form id="next-question-form">
 <label for="next-question-label">CORRECT!</label>
-<input type="submit">
-</form>`;
-const wrongScreen=`<form id="next-question-form">
-<label for="next-question-label">Wrong T_T</label>
 <input type="submit">
 </form>`;
 //code that handles if an answer is correct or not
@@ -164,6 +161,11 @@ function quizStart(){
 }
 //code that handles displaying correct page
 function correctPage(){
+  const wrongScreen=`<form id="next-question-form">
+<label>Wrong T_T</label>
+<label>${store.questions[store.questionNumber].correctAnswer}</label>
+<input type="submit">
+</form>`;
   if(store.correct){
     templatePage(correctScreen);
     console.log('correct!');
@@ -186,7 +188,7 @@ function templatePage(html){
   if(question===0){
     question=1;
   }
-  let questionTracker =`<div class = tracker><h3><p>question #${question} of ${store.questions.length}</h3></div>`;
+  let questionTracker =`<div class = tracker><h3><p>Question #${question} of ${store.questions.length}</h3></div>`;
   if(store.quizStarted){
     $('h1').html(html+questionTracker);
   }else{
