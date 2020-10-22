@@ -155,9 +155,18 @@ button {
   padding: 15px 25px;
   border-radius: 5px;
   }
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> c187f6a276ff250c51d6518b3d8fe8ecc1f3e21c
 button, input {
   margin-top: 20px;
+}
+
+.continue {
+  transform: scale(0.7);
+  margin-bottom: 20px;
 }
 
 }
