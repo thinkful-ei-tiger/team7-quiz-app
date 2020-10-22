@@ -89,6 +89,154 @@ const store = {
   correct: false,
   answered: false,
 };
+function questionHelper(question){
+  let title =`<div class="title">${question.question}</div>`;
+  
+  let answers =
+  `<form>
+     <label>Pick an answer:</label>
+     <div class = "group">
+       <div class = "questionItem">
+         <div class = "radioItem"><input type="radio" id=${question.answers[0]} name="color" value="${question.answers[0]}">
+         <label for="other">${question.answers[0]}</label></div>
+         <div class = "radioItem"><input type="radio" id=${question.answers[1]} name="color" value="${question.answers[1]}">
+         <label for="female">${question.answers[1]}</label></div>
+         <div class = "radioItem"><input type="radio" id=${question.answers[2]} name="color" value="${question.answers[2]}">
+         <label for="other">${question.answers[2]}</label></div>
+         <div class = "radioItem"><input type="radio" id=${question.answers[3]} name="color" value="${question.answers[3]}">
+         <label for="other">${question.answers[3]}</label></div>
+       </div>
+       <div class = tracker><input type="submit" value="Submit"></div>
+     </div>
+   </form>`;
+  store.questionNumber++;
+  templatePage(title+answers);
+  submitAnswer(question);
+}
+const startPage =`<form id="js-quiz-start-form">
+      <label for="quiz-start-label">Are You Meme Enough???</label>
+      <input type="submit">
+    </form>`;
+
+const correctScreen = `<form id="next-question-form">
+<label for="next-question-label">CORRECT!</label>
+<input type="submit">
+</form>`;
+//code that handles if an answer is correct or not
+function submitAnswer(question){
+  $('form').submit(function (event){
+    event.preventDefault();
+    let answer =$('[name=\'color\']:checked').val();
+    console.log(answer);
+    if(answer === (question.correctAnswer)){
+      store.correct =true;
+    }
+    store.answered=true;
+    render();
+  });
+}
+//this code controls starting the quiz
+function quizStart(){
+  $( 'form' ).submit(function( event ) {
+    event.preventDefault();
+    store.quizStarted = true;
+    render();
+  });
+}
+//code that handles displaying correct page
+function correctPage(){
+  const wrongScreen=`<form id="next-question-form">
+<label>Wrong T_T</label>
+<label>${store.questions[store.questionNumber-1].correctAnswer}</label>
+<input type="submit">
+</form>`;
+console.log(`I am at ${store.questionNumber}`);
+  if(store.correct){
+    templatePage(correctScreen);
+    store.score++;
+  }else{
+    templatePage(wrongScreen);
+  }
+  $( 'form' ).submit(function( event ) {
+    event.preventDefault();
+    nextQuestion();
+    render();
+  });
+}
+//code to format text on the page
+function templatePage(html){
+  let question = store.questionNumber;
+  if(question===0){
+    question=1;
+  }
+  let questionTracker =`<div class = tracker><h3><p>Question #${question} of ${store.questions.length}</h3></div>`;
+  if(store.quizStarted){
+    $('h1').html(html+questionTracker);
+  }else{
+    $('h1').html(html);
+  }
+}
+function nextQuestion(){
+  store.answered=false;
+  store.correct=false;
+}
+
+//code that handles displaying finished quiz
+//boolean function that checks if a quiz is finished
+function lastQuestion(){
+  return store.questionNumber>=store.questions.length;
+}
+//function that displays a finished quiz
+function finishedPage(){
+  const finishedScreen= `<form id="finished-form">
+<label for="finished-label">YOU FINISHED!<div class = finished>
+${store.score}/${store.questions.length}<p>correct</p></div></label>
+<button type='submit'>Submit</button>
+</form>`;
+  //let html=finishedScreen;
+  //$( 'h1' ).html(html);
+  templatePage(finishedScreen);
+  $( 'form' ).submit(function( event ) {
+    event.preventDefault();
+    //console.log(`${store.score} fininished`);
+    resetQuiz();
+    render();
+  });
+}
+//helper function to reset the quiz at the end
+function resetQuiz(){
+  store.quizStarted = false;
+  store.questionNumber= 0;
+  store.score=0;
+  store.correct=false;
+  store.answered =false;
+}
+//this code controls what the page displays
+//I could use a switch statement for this if I wanted
+function render(){
+  if(store.quizStarted && store.answered){
+    //store.correct = false;
+    //console.log('you did it!');
+    correctPage();
+  }else if(lastQuestion()){
+    finishedPage();
+  }else if(store.quizStarted){
+    //console.log('how?');
+    questionHelper(store.questions[store.questionNumber]);
+  }else{
+    //let html=startPage;
+    //console.log('nice');
+    templatePage(startPage);
+  }
+}
+function main(){
+  render();
+  quizStart();
+
+
+
+
+}
 
 // variables
 let index = store.questionNumber;
