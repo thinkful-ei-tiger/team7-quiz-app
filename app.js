@@ -143,6 +143,7 @@ function render() {
 function handleAnswer() {
   let selection = $('input:checked').val();
   (selection === correctAnswer) ? renderCorrect() : renderWrong();
+  
 };
 
 // screen if selection correct
