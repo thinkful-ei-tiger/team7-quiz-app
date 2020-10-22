@@ -3,4 +3,4 @@
 Collaborators:\
 Dionis Gonzalez Ramirez\
 Xevier Turribiartes\
-Ryan A. Henderson\
+Ryan A. Henderson
