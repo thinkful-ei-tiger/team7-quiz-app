@@ -1,4 +1,3 @@
-/* eslint-disable strict */
 // main object
 const store = {
   questions: [
@@ -25,40 +24,40 @@ const store = {
     {
       question: 'What is Star Wars day?',
       answers: [
-        'May 4th',
-        'January 1st',
         'March 14th',
-        'April 1st'
+        'May 4th',
+        'April 1st',
+        'July 12'
       ],
       correctAnswer: 'May 4th'
     },
     {
       question: 'What is the answer to life, the universe and everything?',
       answers: [
-        '69',
+        'Come on...',
         '1',
-        '42',
-        '420'
+        '69',
+        '42'
       ],
       correctAnswer: '42'
     },
     {
       question: 'What is the name of Han Solo’s ship?',
       answers: [
+        'Century Hawk',
+        'Gotham City',
         'Millenium Falcon',
-        'Blue Falcon',
-        'Silver Eagle',
-        'Century Bird'
+        'Chewbacca'
       ],
       correctAnswer: 'Millenium Falcon'
     },
     {
-      question: 'Never gonna give you up',
+      question: 'Never gonna give you up...',
       answers: [
-        'Never gonna let you down',
+        'Let the rains down in Africa',
         'YOLO',
-        'Smooth criminal',
-        'I bless the rains down in Africa',
+        'Never gonna let you down...',
+        'LOL'
       ],
       correctAnswer: 'Never gonna let you down'
     },
@@ -127,7 +126,7 @@ function render() {
           <div class = "radioItem"><input type="radio" name="color" value="${answers[3]}">
           <label for="other">${answers[3]}</label></div>
         </div>
-        <div class = tracker><button type="submit">Submit</button></div>
+        <div class = tracker><button type="submit" class="question-submit">Submit</button></div>
         <label>Question ${index+1} of ${store.questions.length}</label>
       </div>
     </form>`
