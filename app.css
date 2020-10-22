@@ -125,8 +125,14 @@ button {
   padding: 15px 25px;
   border-radius: 5px;
   }
+
 button, input {
   margin-top: 20px;
+}
+
+.continue {
+  transform: scale(0.7);
+  margin-bottom: 20px;
 }
 
 }

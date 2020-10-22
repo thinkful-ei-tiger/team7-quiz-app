@@ -143,6 +143,7 @@ function render() {
 function handleAnswer() {
   let selection = $('input:checked').val();
   (selection === correctAnswer) ? renderCorrect() : renderWrong();
+  
 };
 
 // screen if selection correct
@@ -169,7 +170,7 @@ function renderWrong() {
       <label>Wrong T_T</label>
       <label>The correct answer is:</label>
       <label>${correctAnswer}</label>
-      <button type="submit">Continue</button>
+      <button type="submit" class="continue">Continue</button>
     </form>`
   );
   showCorrect();
@@ -191,6 +192,18 @@ function handleNextQuestion() {
   };
 };
 
+// resets variables
+function resetVariables() {
+  store.questionNumber = 0;
+  store.score = 0;
+  index = store.questionNumber;
+  question = store.questions[index].question;
+  answers = store.questions[index].answers;
+  correctAnswer = store.questions[index].correctAnswer;
+  render();
+};
+
+// shoow endgame screen
 function renderFinish() {
   $('main').html(
     `<form id="finished-form">
@@ -200,10 +213,12 @@ function renderFinish() {
     </form>`
   );
   $('form').submit(function(evt) {
+    resetVariables();
     renderStart();
-  })
+  });
 };
 
+// show correction questions on form
 function showCorrect() {
   $('form').append(
     `<label>${store.score} out of ${index+1} correct`
