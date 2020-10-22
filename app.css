@@ -6,15 +6,35 @@
   * https://github.com/andreacardybailey/responsive_example/blob/master/styles/responsive-base.css 
   *
 */
+html{
+  height:100%;
+}
+body{
+  background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRLZboQEMn4MON9QwopQWPAYYBev-0B0lmlBw&usqp=CAU');
+  background-size:cover;
+  background-repeat: no-repeat;
+}
 .title{
-  font-size:4vw;
-  padding: 15px 25px;
+  font-size-adjust: .5;
+  font-size:32px;
   padding-left: 8px;
+  color: white;
+  text-shadow: 2px 4px 5px black;
 }
 .tracker{
   font-size:4vw;
   padding: 15px 25px;
   padding-left: 8px;
+}
+h3{
+  font-size-adjust: inherit;
+  font-size:32px;
+  color:white;
+  text-shadow: 2px 2px black;
+}
+label{
+  font-size-adjust: inherit;
+  font-size: 16px;
 }
 form {
     display: flex;
@@ -24,6 +44,7 @@ form {
     min-height: 200px;
     background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(249,249,249,1) 72%, rgba(13,37,245,1) 100%);
     border: solid;
+    box-shadow: 2px 2px black;
     border-width: 1px;
     border-radius: 8px;
     font-family: 'Varela', sans-serif;
@@ -32,32 +53,24 @@ form {
     margin: 25px 10px;
     font-size: 4vw; 
   }
-form div{
-  display:flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  padding: 15px 25px;
-  justify-content: space-around;
-}
-.group{
-  display:flex;
-  flex-direction: column;
-}
+
 form.radioItem{
   /*border:solid;*/
   margin-right: 20px;
   justify-content: space-around;
   transform:scale(1.1);
 }
+.radio {
+
+  display: grid;
+  grid-template-columns: min-content auto;
+  grid-gap: 0.5em;
+}
 button {
   padding: 15px 25px;
   border-radius: 5px;
   }
   @media only screen and (min-width: 600px) {
-    body {
-      background-color: lightblue;
-    }
     form.radioItem{
       transform:scale(1);
     }
