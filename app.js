@@ -127,10 +127,10 @@ function render() {
           <label for="other">${answers[3]}</label></div>
         </div>
         <div class = tracker><button type="submit" class="question-submit">Submit</button></div>
-        <label>Question ${index+1} of ${store.questions.length}</label>
       </div>
     </form>`
   );
+  showCorrect();
   // assign submit handler to form for handling answer
   $('form').submit(function(evt) {
     evt.preventDefault();
@@ -150,7 +150,7 @@ function renderCorrect() {
   $('main').html(
     `<form id="next-question-form">
       <label for="next-question-label">CORRECT!</label>
-      <button type="submit">Continue</button>
+      <button type="submit" class="continue">Continue</button>
     </form>`
   );
   // assign submit handler to prepare next question
@@ -220,7 +220,10 @@ function renderFinish() {
 // show correction questions on form
 function showCorrect() {
   $('form').append(
-    `<label>${store.score} out of ${index+1} correct`
+    `<div class=questions>
+      <label>Question ${index+1} of ${store.questions.length}</label>
+      <label>${store.score} out of ${index+1} correct</label>
+    </div>`
   );
 }
 

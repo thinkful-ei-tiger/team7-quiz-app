@@ -72,9 +72,17 @@ button {
   padding: 15px 25px;
   border-radius: 5px;
   }
-  
-  
 
+.questions {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.questions label {
+  padding-bottom: 10px;
+}
+  
 
 @media all and (min-width: 800px) {
 
@@ -156,6 +164,8 @@ button {
     transform:scale(1.1);
   }
 
+  
+
   button {
     padding: 15px 25px;
     border-radius: 5px;
@@ -166,12 +176,24 @@ button {
   }
 
   .continue {
-    transform: scale(0.7);
+    transform: scale(0.85);
     margin-bottom: 20px;
   }
 
   .question-submit {
-    transform: scale(0.7);
+    transform: scale(0.65);
+  }
+  
+}
+
+@media all and (max-width: 400px) {
+  .questions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
+  form {
+    font-size-adjust: 3;
+  }
 }
